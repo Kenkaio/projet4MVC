@@ -1,0 +1,153 @@
+#barNav{
+	z-index:2;
+}
+
+.contenuArticles{
+	width: 50%;
+	margin: auto;
+	padding-top: 100px;
+}
+
+#article, #articleComplet{
+	width: 80%;
+	margin: auto; 
+	margin-top: 30px;
+	margin-bottom: 50px;
+	height: 200px;
+	overflow: hidden;
+	background-color: rgba(255, 255, 255, 0.7);
+	color: black;
+}
+
+#article{
+	font-size: 1.5em;
+}
+
+a{
+	text-decoration: none;
+	color: black;
+}
+
+#titreArticle{
+	padding: 15px;	
+	font-size: 1.7em;
+	text-align: center;
+	font-weight: bold;
+}
+
+.contenu p, .contenu{
+	margin-left: 15px;
+	margin-top: 30px;
+}
+
+#articleComplet{
+	background-color: rgba(255, 255, 255, 0.9);
+	height: 100%;
+}
+
+#titreCom{
+	font-size: 3em;
+	color: rgb(136, 82, 0);
+	text-shadow: -2px 0px 3px rgba(255, 255, 255, 1);
+}
+
+.contenuCom{
+	border-radius: 15px;
+    margin-top: 20px;
+    margin-left: 70px;
+    margin-bottom: 10px;
+}
+
+#date{
+	width: 100%;
+	padding: 20px;
+}
+
+.contenuRep{
+	margin-left: 150px;
+	margin-bottom: 15px;
+}
+
+.editTextarea{
+	display: none;
+	margin-top: 30px;
+}
+
+#reponseCom{
+	margin-top: 10px;
+}
+
+textarea{
+	resize: none;
+	width: 90%;
+}
+
+.confirmRepCom{
+	width: 50px;
+	height: 50px;
+	background-image: url('../images/valider.png');
+	background-color: rgb(232, 242, 255);
+	background-size: 100%;
+	border: none;
+	outline: 0;
+	font-size: 0;
+	margin-left: 40%;
+}
+
+#formSignalementCom{
+	position: absolute;
+	margin-top: -22px;
+	margin-left: 80px;
+}
+
+#formSignalementRep{
+	position: absolute;
+	margin-top: -22px;
+	margin-left: 200px;
+}
+
+input, textarea{
+	border: none;
+	outline: 0;
+}
+
+.repondre, .signalerCom, .signalerRep{
+	color: rgb(2, 78, 162);
+}
+
+h2 a, h2 a:hover{
+	padding: 20px;
+	text-decoration: none;
+	color: rgb(136, 82, 0);
+}
+
+#ajoutCommentaire{
+	padding: 20px;
+	padding-bottom: 50px;
+}
+
+#reponseCom, .auteurRepCom, #contenuComText, #auteurCom{
+	border-bottom: 1px solid grey
+}
+
+a button ,a button:hover{
+	text-decoration: none;
+	color: black;
+}
+
+.suite{
+	height: 50px;
+	width: 150px;
+}
+
+#glyphicon{
+	position: absolute;
+}
+
+.glyphicon-user:before{
+	margin-right: 5px;
+}
+
+.texteCom{
+	margin-top: 10px;
+}

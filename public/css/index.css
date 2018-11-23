@@ -89,3 +89,35 @@ nav{
 strong{
 	font-weight: bold;
 }
+
+/* ---- Formulaire connexion admin ----*/
+
+#formAdmin{
+	display: flex;
+	flex-direction: column;
+	padding-left: 50px;
+	padding-right: 50px;
+	background-color: rgb(236, 219, 179);
+	margin-bottom: 20px;
+	margin-top: 50px;
+}
+
+#pseudo, #password{
+	width: 40%;
+	padding: 10px;
+	margin: auto;
+	margin-top: 15px;
+}
+
+#admin{
+	margin: auto;
+	margin-top: 15px;
+}
+
+#confirmAdmin{
+	width: 10%;
+	padding: 5px;
+	margin: auto;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}

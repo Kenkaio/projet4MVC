@@ -1,0 +1,52 @@
+/* ---- formulaire de contact ---- */
+#contact{
+	display: flex;
+	flex-direction: column;
+	padding-left: 50px;
+	padding-right: 50px;
+	background-color: rgb(236, 219, 179);
+	margin-bottom: 20px;
+	margin-top: 50px;
+}
+
+#nom, #mail, #subject, #message{
+	border: none;
+	border-bottom: 1px solid black;
+	margin-top: 10px;
+	padding-top: 10px;
+	padding-bottom: 0;
+	height: 40px;
+	outline: 0;
+	background-color: transparent;
+}
+
+form h1{
+	color: rgb(168, 131, 43);
+	font-weight: normal;
+}
+
+#nom, #mail{
+	width: 48%;
+}
+
+#contact textarea{
+	height: 200px;
+	margin-top: 20px;
+}
+
+#mail{
+	margin-left: 45px;
+}
+
+#contact textarea{
+	resize: none;
+}
+
+#valider{
+	margin: auto;
+	border: none;
+	background-color: transparent;
+	width: 100px;
+	height: 50px;
+	outline: 0;
+}

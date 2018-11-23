@@ -1,7 +1,11 @@
 <?php
+session_start();
 
-require('models/model.php');
+require('models/modelBillets.php');
+require('views/indexAccueil.php');	
 
-$posts = getPosts();
-
-require('views/indexView.php');
+if (isset($_SESSION['passError'])) {	
+	echo "<script>alert('Pseudo ou password incorrect')</script>";
+	$_SESSION = array();
+	session_destroy();
+}

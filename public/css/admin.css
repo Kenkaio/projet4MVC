@@ -1,0 +1,55 @@
+body{
+	overflow-x: hidden;
+}
+
+table
+{
+    border-collapse: collapse;
+    margin: auto;
+    margin-top: 100px;
+}
+
+tbody{
+	border: 3px solid black;
+}
+
+th{
+	font-size: 1.7em;
+}
+
+td{
+	font-size: 1.5em;
+	text-align: center;
+}
+
+td, th
+{
+    border: 1px solid black;
+}
+
+img{
+	width: 50px;
+	height: 50px;
+	margin: auto;
+}
+
+img:hover{
+	cursor: pointer;
+}
+
+th:first-child{
+	border: none;
+}
+
+.viewOff{
+	border: none;
+	margin-left: 45%;
+	padding-top: -100px;
+	margin-bottom: 50px;
+	background-color: white;
+	font-size: 1.5em;
+}
+
+#tableResponses{
+	margin-bottom: 100px;
+}

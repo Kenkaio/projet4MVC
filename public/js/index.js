@@ -87,11 +87,11 @@ $('#lienContact').on('click', function(){
     $('.descriptionAuteur').hide();
 });
 
-$('#menuAdmin').on('click', function(){
-    $('#formAdmin').fadeIn(1000);
+$('#menuAdmin').on('click', function(){    
     $('#contact').hide();
     $('#biog').hide();
     $('.descriptionAuteur').hide();
+    $('#formAdmin').fadeIn(1000);
 });
 
 

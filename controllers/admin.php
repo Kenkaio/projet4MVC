@@ -27,6 +27,10 @@ if ($_SESSION['ouvert']) {
 	$posts = getPosts();
 	$comments = comments();
 	$responses = responses();
+	$total = total();
+	if ($total == 0) {
+		$total = '';
+	}
 	require('../views/adminView.php');
 
 	if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -38,7 +42,7 @@ if ($_SESSION['ouvert']) {
 
 if(isset($_POST['update'])){ 
 	$adr = update();
-	header('location:admin.php?id='.$adr);
+	header('location:admin.php');
 }
 
 if(isset($_GET['del'])){ 
@@ -51,6 +55,16 @@ if(isset($_POST['delete'])){
 	$id = $_POST['idArt'];
 	delete($id);
 	header('location:admin.php#mesArticles');
+}
+
+if(isset($_GET['com'])){ 
+	$content = substr($_GET['com'], 4, -2);
+	$id = substr($_GET['com'], 5);
+	if ($content == 'R') {
+		deleteR($id);
+	}else{
+		deleteC($id);
+	}
 }
 
 ob_end_flush();  

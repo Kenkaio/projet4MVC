@@ -75,7 +75,7 @@
 
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-bell fa-fw"><sup><?= $total ?></sup></i> <i class="fa fa-caret-down"></i>
                     </a>
                 </li>
 
@@ -101,6 +101,11 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12 return">
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
             <div class="row">
                 <div class="col-lg-offset-2 col-lg-2 col-md-6">
                     <div class="panel panel-primary">
@@ -191,7 +196,8 @@
                     <?php require('viewResponses.php') ?>                   
                 </div>   
                 <div class="viewed"></div>        
-            </div>
+            </div>          
+            <button class="viewOff">Marquer comme lu</button>
         </div>
         <!-- /#page-wrapper -->
     </div>

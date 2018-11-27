@@ -44,12 +44,18 @@ th:first-child{
 .viewOff{
 	border: none;
 	margin-left: 45%;
-	padding-top: -100px;
 	margin-bottom: 50px;
 	background-color: white;
 	font-size: 1.5em;
+	outline: 0;
 }
 
 #tableResponses{
-	margin-bottom: 100px;
+	max-width: 90%;
+}
+
+sup{
+	color: red;
+	font-weight: bold;
+	border-radius: 50%;
 }

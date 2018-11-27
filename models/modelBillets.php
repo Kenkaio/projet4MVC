@@ -30,7 +30,7 @@ function getComments($postId)
 function getResponses($postIdCom)
 {
 	$db = dbConnect();
-	$responses = $db->prepare("SELECT * FROM reponses WHERE idArt=? ORDER BY idR DESC");
+	$responses = $db->prepare("SELECT * FROM reponses WHERE idArt=? ORDER BY id DESC");
 	$responses->execute(array($postIdCom));
 	return $responses;
 }

@@ -44,6 +44,13 @@ function newResponses()
 	return $responses;
 }
 
+function total(){
+	$totalC = newComments();
+	$totalR = newResponses();
+	$total = $totalC[0] + $totalR[0];
+	return $total;
+}
+
 function comments()
 {
 	$db = dbConnect();
@@ -89,3 +96,14 @@ function selectCom($id){
     return $post;
 }
 
+function deleteR($id){	
+	$db = dbConnect();                   
+    $req = $db->prepare("DELETE FROM reponses WHERE id=?");
+    $req->execute(array($id));
+}
+
+function deleteC($id){	
+	$db = dbConnect();                   
+    $req = $db->prepare("DELETE FROM commentaires WHERE id=?");
+    $req->execute(array($id));
+}

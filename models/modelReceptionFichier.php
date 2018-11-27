@@ -43,7 +43,7 @@ session_start();
                 }
 
                 if(isset($_POST['deleteRep'])){
-                    $req = $db->prepare('DELETE FROM reponses WHERE idR=?');
+                    $req = $db->prepare('DELETE FROM reponses WHERE id=?');
                     $req->execute(array($_POST['deleteRep']));
                     redirect_to('location:mesArticles.php?id=' . $_POST['idArt']);
                 }
@@ -58,7 +58,7 @@ session_start();
                 }
 
                 if(isset($_POST['confirmRepEdit'])){
-                    $req = $db->prepare('UPDATE reponses SET contenuRep=? WHERE idR=?');
+                    $req = $db->prepare('UPDATE reponses SET contenuRep=? WHERE id=?');
                     $req->execute(array(
                         $_POST['contenuRep'],
                         $_POST['confirmRepEdit']
@@ -70,7 +70,7 @@ session_start();
                     $req = $db->prepare('INSERT INTO reponses (idArt, auteurRep, contenuRep) VALUES (:idArt, :auteurRep, :contenuRep)');
                     $req->execute(array(
                         'idArt' => $_POST['idCom'], 
-                        'auteurRep' => htmlspecialchars($_POST['auteurRepCom']), 
+                        'auteurRep' => htmlspecialchars($_POST['auteurCom']), 
                         'contenuRep' => htmlspecialchars($_POST['reponseCom']),
                     ));
                     redirect_to('location:../controllers/post.php?id=' . $_POST['idArt']);
@@ -85,7 +85,7 @@ session_start();
                 }  
 
                 if(isset($_POST['signalerRep'])){
-                    $req = $db->prepare('UPDATE reponses SET signalementsRep=signalementsRep+1  WHERE idR=?');
+                    $req = $db->prepare('UPDATE reponses SET signalementsRep=signalementsRep+1  WHERE id=?');
                     $req->execute(array(
                         $_POST['idSignalementCom']
                     )); 
@@ -101,6 +101,27 @@ session_start();
                     )); 
                     redirect_to('location:../controllers/post.php?id=' . $_POST['idArt']);
                 } 
+
+                if (isset($_POST['data'])) {    
+
+                    $data = $_POST['data'];
+
+                    if (substr($data, 6, -2) == 'Com'){
+                        $db = dbConnect();
+                        $req = $db->prepare('UPDATE commentaires SET nouveau=0 WHERE id=?');
+                        $req->execute(array(
+                            substr($data, 9)
+                        ));
+                    }
+                    else if (substr($data, 6, -2) == 'Rep'){
+                        $db = dbConnect();
+                        $req = $db->prepare('UPDATE reponses SET nouveau=0 WHERE id=?');
+                        $req->execute(array(
+                            substr($data, 9)
+                        ));
+                    }
+                }
+
                 ob_end_flush();         
        		?>
     </div>    

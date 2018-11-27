@@ -10,21 +10,10 @@ function hideAll()
 
 hideAll();
 
-$('td').on('click', function(){
-	if (this.id == '') {
-
-	}else{
-		id = this.id.substr(4);
-		if (this.id == 'edit'+id) {
-			$('#tablePosts').fadeOut(1000);	
-		}
-		else if (this.id == 'dele'+id) {
-
-		}
-		else{
-
-		}
-	}
+$('.fa-bell').on('click', function(){
+	hideAll();
+	$('#newResponses').fadeIn(1000);
+	$('#newComments').fadeIn(1000);
 });
 
 $('#showArticles').on('click', function(){
@@ -42,24 +31,18 @@ $('#showResponses').on('click', function(){
 	$('#newResponses').fadeIn(1000);
 });
 
-$('img').on('click', function(){
-	hideAll();
-	$('#adminArticle').fadeIn(1000);
+$('.viewOff').on('click', function(){
+	id = document.querySelectorAll('input[type="checkbox"]:checked');	
+    for (var i = 0; i < id.length; i++) {
+    	$.post("../models/modelReceptionFichier.php", {	
+	    	data:id[i].id
+	    }, function (data){
+	    	$('.return').html(data);
+	    });
+    }    
+    window.location.reload();
 });
 
-$('.viewOff').on('click', function(){
-	id = document.querySelectorAll('input[type="checkbox"]:checked');
-	var identite = new FormData();
-	for (var i = 0; i < id.length; i++) {
-		// Ajout d'information dans l'objet
-		identite.append("id"+i, id[i].id);
-		// Création et configuration d'une requête HTTP POST vers le fichier post_form.php		
-	}
-	var req = new XMLHttpRequest();
-	req.open("POST", "../models/log.php");
-	// Envoi de la requête en y incluant l'objet
-	req.send(identite);	
-});
 
 $('input[type="checkbox"]').on('click', function(){
 	$('#tr'+this.id.substr(6)).css({
@@ -82,4 +65,10 @@ $('input[type="checkbox"]').on('click', function(){
 	else{
 		$('.viewOff').fadeOut(500);
 	}
+});
+
+$('.modif').on('click', function(){
+	id = this.id;
+	hideAll();	
+	self.location.href="admin.php?com="+id;
 });

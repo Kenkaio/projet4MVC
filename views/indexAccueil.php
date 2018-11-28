@@ -20,11 +20,11 @@
 			</div>				
 		</div>
 
-		<form id="contact" method="POST" action="contact.php">
+		<form id="contact" method="POST" action="models/modelReceptionFichier.php">
 			<h1>CONTACT</h1>
 			<div>
-				<input type="text" name="nom" id="nom">
-				<input type="email" name="mail" id="mail">
+				<input type="text" name="nom" id="nom" required>
+				<input type="email" name="mail" id="mail" required>
 			</div>
 			<input type="text" name="subject" id="subject" required>
 			<textarea type="text" name="message" id="message" required></textarea>

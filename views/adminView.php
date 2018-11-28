@@ -100,12 +100,6 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12 return">
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
             <div class="row">
                 <div class="col-lg-offset-2 col-lg-2 col-md-6">
                     <div class="panel panel-primary">
@@ -115,13 +109,13 @@
                                     <i class="fa fa-comments-o fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><?= $totalComments[0] ?></div>
+                                    <div class="huge" id="hudeCom"></div>
                                     <div>Nouveaux commentaires !</div>
                                 </div>
                             </div>
                         </div>
                         <a href="#newComments">
-                            <div class="panel-footer" id="showComments">
+                            <div class="panel-footer" id="showComments" onclick='viewComs("com")'> 
                                 <span class="pull-left">Voir les détails</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
@@ -137,13 +131,13 @@
                                     <i class="fa fa-comments-o fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><?= $totalResponses[0] ?></div>
+                                    <div class="huge" id="hudeRep"></div>
                                     <div>Nouvelles réponses !</div>
                                 </div>
                             </div>
                         </div>
                         <a href="#newResponses">
-                            <div class="panel-footer" id="showResponses">
+                            <div class="panel-footer" id="showResponses" onclick='viewComs("rep")'>
                                 <span class="pull-left">Voir les détails</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
@@ -187,17 +181,18 @@
             </div>
             <div class="row" id="newComments">
                 <div class="col-lg-12 col-md-12">
-                    <?php require('viewComments.php') ?>                   
-                </div>   
-                <div class="viewed"></div>        
+                    <table id="tableComments">
+                    </table>                      
+                </div>     
+                <button class="viewOff" id="com" onclick='viewComs("com")'>Marquer comme lu</button>      
             </div>
             <div class="row" id="newResponses">
                 <div class="col-lg-12 col-md-12">
-                    <?php require('viewResponses.php') ?>                   
-                </div>   
-                <div class="viewed"></div>        
+                    <table id="tableResponses">
+                    </table>   
+                    <button class="viewOff" id="rep" onclick='viewComs("rep")'>Marquer comme lu</button>              
+                </div>          
             </div>          
-            <button class="viewOff">Marquer comme lu</button>
         </div>
         <!-- /#page-wrapper -->
     </div>

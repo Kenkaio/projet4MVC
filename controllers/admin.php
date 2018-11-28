@@ -26,7 +26,6 @@ if ($_SESSION['ouvert']) {
 	$totalArticle = posts();
 	$posts = getPosts();
 	$comments = comments();
-	$responses = responses();
 	$total = total();
 	if ($total == 0) {
 		$total = '';

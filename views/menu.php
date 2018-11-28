@@ -8,8 +8,7 @@
 			<li><a href="http://formation-developpeur-web-junior-mc.fr/projet4/index.php#formAdmin" id="menuAdmin">Admin</a></li>
 		</ul>
 	</nav>
-</div>
- -->
+</div> -->
 <div id="barNav">		
 	<nav class="navbar">
 		<ul class="nav navbar-nav">									

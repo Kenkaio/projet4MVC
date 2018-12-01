@@ -25,10 +25,9 @@ if ($_SESSION['ouvert']) {
 	$totalResponses = newResponses();
 	$totalArticle = posts();
 	$posts = getPosts();
-	$comments = comments();
-	$total = total();
-	if ($total == 0) {
-		$total = '';
+	$newMessage = newMessage();
+	if ($newMessage == 0) {
+		$newMessage = '';
 	}
 	require('../views/adminView.php');
 

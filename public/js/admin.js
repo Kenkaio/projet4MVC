@@ -1,3 +1,5 @@
+/* ----- Page d'accueil Admin.php -----*/
+
 function hideAll()
 {
 	$('#tablePosts').hide();
@@ -6,14 +8,24 @@ function hideAll()
 	$('#newComments').hide();
 	$('#newResponses').hide();
 	$('.viewOff').hide();
+	$('#mails').hide();	
 }
 
+/*------- Génération chiffres nouveaux com / rep -------*/
 hideAll();
-$( document ).ready(function() {
-    upNumber('rep');
-	upNumber('com');
+
+$(document).ready(function() { 
+	viewComs('com');
+	viewComs('rep');
+	setInterval(function(){ 
+		upNumber('rep');
+		upNumber('com');
+		upNumber('mail');
+	},1500);
 });
 
+
+/*------- Affichage différentes section au clic -------*/
 $('.fa-bell').on('click', function(){
 	hideAll();
 	$('#newResponses').fadeIn(1000);
@@ -37,6 +49,15 @@ $('#showResponses').on('click', function(){
 	$('#newResponses').fadeIn(1000);
 });
 
+$('#messagerie').on('click', function(){
+	$('#ongletTableau').fadeIn(1000);
+});
+
+$('#recep').on('click', function(){
+	$('#ongletTableau').fadeIn(1000);
+});
+
+/*------- xml en fonction des navigateurs -------*/
 function getXhr(){
     var xhr = null; 
 	if(window.XMLHttpRequest) // Firefox et autres
@@ -55,6 +76,7 @@ function getXhr(){
     return xhr;
 }
 
+/*------- affichage des commentaires / réponses -------*/
 function viewComs(choice){
 	var xhr = getXhr()
 	// On défini ce qu'on va faire quand on aura la réponse
@@ -79,6 +101,7 @@ function viewComs(choice){
 	}	
 }
 
+/*------- affichage des nombres (nouveaux com, nouvelles rep) -------*/
 function upNumber(choice){
 	var xhr = getXhr()
 	// On défini ce qu'on va faire quand on aura la réponse
@@ -91,18 +114,42 @@ function upNumber(choice){
 			else if(choice == 'com'){
 				document.getElementById('hudeCom').innerHTML = xhr.response[1];
 			}
+			else if(choice == 'mail'){
+				document.getElementById('supMes').innerHTML = xhr.response[1];				
+				document.getElementById('supBut').innerHTML = xhr.response[1];
+			}
 		}
 	}
 	if (choice == 'rep') {
-		xhr.open("GET","../models/numberR.json",true);
-	xhr.send(null);
+		$.post("../models/modelReload.php", {	
+	    	reloadRep:'reload'
+	    }, function (data){
+	    	$('.return').html(data);
+	    });
+		xhr.open("GET","../models/json/numberR.json",true);
+		xhr.send(null);
 	}
 	else if (choice == 'com') {
-		xhr.open("GET","../models/numberC.json",true);
+		$.post("../models/modelReload.php", {	
+	    	reloadCom:'reload'
+	    }, function (data){
+	    	$('.return').html(data);
+	    });
+		xhr.open("GET","../models/json/numberC.json",true);
+		xhr.send(null);
+	}	
+	else if (choice == 'mail') {
+		$.post("../models/modelReload.php", {	
+	    	reloadMail:'reload'
+	    }, function (data){
+	    	$('.return').html(data);
+	    });
+		xhr.open("GET","../models/json/numberM.json",true);
 		xhr.send(null);
 	}	
 }
 
+/*------- fonction ajax -------*/
 $('.viewOff').on('click', function(){
 	var choice = this.id;
 	id = document.querySelectorAll('input[type="checkbox"]:checked');    
@@ -116,18 +163,19 @@ $('.viewOff').on('click', function(){
    	setTimeout(function(){ 
    		viewComs(choice); 
    	}, 1000);
-   	$( document ).ready(function() {
+   	$('body').css({'cursor':'wait'});
+   	setTimeout(function(){ 
    		if (choice == "rep") {
 	   		upNumber('rep');
-	   	}else{
-	   		upNumber('com');
-	   	}
-	});
-   	
+		}else{
+		   	upNumber('com');
+		}
+		$('body').css({'cursor':'default'});
+   	}, 1500);	   	
 });   		
 
+/*------- propriété css -------*/
 var numberCheked = 0;
-
 function changeStatus(thisInput){
 	
 	var id = thisInput.id.substr(9);
@@ -157,3 +205,7 @@ $('.modif').on('click', function(){
 	hideAll();	
 	self.location.href="admin.php?com="+id;
 });
+
+
+/*------ Partie messagerie ------*/
+

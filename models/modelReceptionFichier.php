@@ -118,7 +118,20 @@ session_start();
                         ));
                     }
                 }
+                /* ------- Affichage des messages -------*/
+                if (isset($_POST['mes'])) {
+                    $mes = $_POST['mes'];
+                    $db = dbConnect();
+                    $req = $db->prepare('UPDATE message SET nouveau=0 WHERE id=?');
+                    $req->execute(array(
+                        substr($mes, 5)
+                    ));
+                }
 
+                /* ------- Affichage message spec --------*/
+                if (isset($_POST['deleteMsg'])) {
+
+                }
                 ob_end_flush();         
        		?>
     </div>    

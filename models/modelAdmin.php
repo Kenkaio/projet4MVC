@@ -44,11 +44,11 @@ function newResponses()
 	return $responses;
 }
 
-function total(){
-	$totalC = newComments();
-	$totalR = newResponses();
-	$total = $totalC[0] + $totalR[0];
-	return $total;
+function newMessage(){
+	$db = dbConnect();
+	$req = $db->query("SELECT COUNT(*) FROM message WHERE nouveau = true");
+	$newMessage = $req->fetch();
+	return $newMessage;
 }
 
 function comments()
@@ -62,6 +62,13 @@ function responses()
 {
 	$db = dbConnect();
 	$req = $db->query("SELECT * FROM reponses WHERE nouveau = true");
+	return $req;
+}
+
+function messages()
+{
+	$db = dbConnect();
+	$req = $db->query("SELECT * FROM message WHERE nouveau = true ORDER BY id DESC");
 	return $req;
 }
 

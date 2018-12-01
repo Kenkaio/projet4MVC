@@ -27,7 +27,7 @@
 				<input type="email" name="mail" id="mail" required>
 			</div>
 			<input type="text" name="subject" id="subject" required>
-			<textarea type="text" name="message" id="message" required></textarea>
+			<textarea name="message" id="message" required></textarea>
 			<input type="submit" value="Envoyer" id="valider">
 		</form>
 

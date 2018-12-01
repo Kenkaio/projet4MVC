@@ -1,35 +1,6 @@
 <?php     
-  require('../models/modelCoBdd.php');
-  require('../models/modelAdmin.php');
-  $comments = comments();
-  $arrayCom = array();
-  fclose(fopen('../models/array.json', 'w'));
-  $i=0;
-  while ($comment = $comments->fetch())
-  {    
-    $arrayCom = $comment;
-
-    $js = file_get_contents('../models/array.json');
-
-    $js = json_decode($js, true);
-
-    $js[] = $arrayCom;
-
-    $js = json_encode($js);
-    file_put_contents('../models/array.json', $js);
-    $i++;
-  }      
-
-  $arrayNumber = array();
-  fclose(fopen('../models/numberC.json', 'w'));
-  $put = file_get_contents('../models/numberC.json');
-  $put = json_decode($put, true);
-  $put[] = $i;
-  $put = json_encode($put);
-  file_put_contents('../models/numberC.json', $put);
-
-
-  $message = file_get_contents('../models/array.json');
+  require('../models/modelReload.php');
+  $message = file_get_contents('../models/json/arrayC.json');
   $message = json_decode($message, true);
   ?> <table id="tableComments">
         <tr>

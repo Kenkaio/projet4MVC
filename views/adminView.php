@@ -33,6 +33,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link rel="stylesheet" type="text/css" href="../public/css/articles.css">
+    <link rel="stylesheet" type="text/css" href="../public/css/message.css">
 
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=0hkhpc4x9cs6zila14oyvwobq0nvvwt8jz83d0b6k58i1q6s"></script>
     <script>tinymce.init({ selector:'textarea' });</script>
@@ -57,28 +58,17 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
+                <li class="dropdown" id='messagerie' onclick="viewMessagerie()">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-envelope fa-fw" ></i><sup id='supMes'></sup>
                     </a>
-                    <ul class="dropdown-menu">                       
-                    </ul>
-                </li>
-
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-book" aria-hidden="true"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                    </ul>
                 </li>
 
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell fa-fw"><sup><?= $total ?></sup></i> <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-book" aria-hidden="true"></i>
                     </a>
                 </li>
-
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -179,6 +169,20 @@
                 </div>  
                 <div class="viewed"></div>        
             </div>
+            <div class="row" id="mails">
+                <div class="col-lg-offset-2 col-lg-1 col-md-6" id="menuMails">
+                    <button class="optionsMessagerie" id="recep"><img src="../public/images/reception.png" alt="réception mail">Récéption (<strong id="supBut"></strong>)</button>
+                    <button class="optionsMessagerie"><img src="../public/images/envoi.png" alt="boite d'envoi">Envoyés</button>
+                    <button class="optionsMessagerie"><img src="../public/images/corbeille.png" alt="corbeille">Supprimés</button>
+                </div>
+                <div class="col-lg-7 col-md-6" id="messageComplet">   
+                    <div id="optionsMessagerie">
+                        <button id="delMes">Supprimer</button>
+                        <button id="lu">Marquer comme lu</button>                               
+                    </div>
+                    <table id="ongletTableau"></table>    
+                </div>     
+            </div>
             <div class="row" id="newComments">
                 <div class="col-lg-12 col-md-12">
                     <table id="tableComments">
@@ -191,7 +195,7 @@
                     <table id="tableResponses">
                     </table>   
                     <button class="viewOff" id="rep" onclick='viewComs("rep")'>Marquer comme lu</button>              
-                </div>          
+                </div>         
             </div>          
         </div>
         <!-- /#page-wrapper -->
@@ -215,7 +219,7 @@
     <!-- Custom Theme JavaScript -->
     <script src="../models/sbAdmin/dist/js/sb-admin-2.js"></script>
 
-    <script src="../public/js/ajax.js"></script>
+    <script src="../public/js/messagerie.js"></script>
     <script src="../public/js/admin.js"></script>
 
 

@@ -199,23 +199,26 @@
                 </div>
                 <div class="col-lg-7 col-md-6" id="messageComplet">   
                     <div id="optionsMessagerie">
-                        <button id="delMes">Supprimer</button>
                         <button id="lu">Marquer comme lu</button>                               
                     </div>
-                    <table id="ongletTableau"></table>    
+                    <table id="ongletTableau" class="table table-bordered table-striped table-condensed"></table>    
                 </div>     
             </div>
             <div class="row" id="newComments">
                 <div class="col-lg-12 col-md-12">
-                    <table id="tableComments">
-                    </table>                      
+                    <div class="cssTable">
+                        <table id="tableComments" class="table table-bordered table-striped table-condensed">
+                        </table>  
+                    </div>                    
                 </div>     
                 <button class="viewOff" id="com" onclick='viewComs("com")'>Marquer comme lu</button>      
             </div>
             <div class="row" id="newResponses">
                 <div class="col-lg-12 col-md-12">
-                    <table id="tableResponses">
-                    </table>   
+                    <div class="cssTable">
+                        <table id="tableResponses" class="table table-bordered table-striped table-condensed">
+                        </table>
+                    </div>   
                     <button class="viewOff" id="rep" onclick='viewComs("rep")'>Marquer comme lu</button>              
                 </div>         
             </div>  

@@ -2,7 +2,7 @@
   require('../models/modelReload.php');
   $message = file_get_contents('../models/json/arrayC.json');
   $message = json_decode($message, true);
-  ?> <table id="tableComments">
+  ?> <table id="tableComments" class="table table-bordered table-striped table-condensed">  
         <tr>
             <th>Lu</th>
             <th>Id</th>

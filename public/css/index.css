@@ -17,29 +17,14 @@ header{
 	width: 70%;
 	margin: auto;
 }
-#barNav{
-	position: fixed;
-	text-align: center;
-	right: 25%;
-	margin-top: 5px;
+
+.navbar{
+	opacity: 0.9;
 }
 
 #titre a{
 	color: black;
 }
-
-ul a{
-	color: black;
-}
-
-nav{
-	background-color: rgba(0, 0, 0, 0.7);
-}
-
-.nav a{
-	color: white;
-}
-
 .contenuHeader{	
 	margin: 0;
 	padding: 0;
@@ -55,7 +40,7 @@ nav{
 	display: none;
 	opacity: 0;
 	width: 700px;
-	margin-left: 230px;
+	margin-left: 20%;
 	margin-top: 250px;
 	position: absolute;
 	padding: 0;
@@ -120,4 +105,27 @@ strong{
 	margin: auto;
 	margin-top: 15px;
 	margin-bottom: 15px;
+}
+
+@media (max-width: 992px){
+	.contenuHeader{
+		display: none;
+	}
+}
+
+@media (max-width: 1280px){
+	#titre{
+		margin-left: 5%;
+	}
+
+	#pseudo, #password{
+		width: 100%;
+	}
+
+	#confirmAdmin{
+		width: 60%;
+	}
+	#biog{
+		margin-top: 50px;
+	}
 }

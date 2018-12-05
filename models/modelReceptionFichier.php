@@ -115,9 +115,9 @@ session_start();
                     $db = dbConnect();
                     $req = $db->prepare('UPDATE message SET nouveau=0 WHERE id=?');
                     $req->execute(array(
-                        substr($mes, 5)
+                        substr($mes, 9)
                     ));
-                    redirect_to('location:admin.php');
+                    redirect_to('location:../controllers/admin.php');
                 }
 
                 if (isset($_GET['idC'])) {

@@ -4,7 +4,7 @@
   $message = file_get_contents('../models/json/arrayR.json');
   $message = json_decode($message, true); 
 
-  ?> <table id="tableResponses">
+  ?> <table id="tableResponses" class="table table-bordered table-striped table-condensed">
         <tr>
             <th>Lu</th>
             <th>Id</th>

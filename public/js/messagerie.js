@@ -18,7 +18,6 @@ function viewMessagerie(){
 $('#lu').on('click', function(){
 	id = document.querySelectorAll('input[type="checkbox"]:checked');
 	for (var i = 0; i < id.length; i++) {
-    	console.log(id);
     	$.post("../models/modelReceptionFichier.php", {	
 	    	mes:id[i].id
 	    }, function (data){

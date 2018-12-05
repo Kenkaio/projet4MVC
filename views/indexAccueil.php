@@ -5,6 +5,8 @@
 	<link rel="stylesheet" type="text/css" href="public/css/index.css">
 	<link rel="stylesheet" type="text/css" href="public/css/contact.css">
 	<link href="models/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<header>
@@ -50,7 +52,7 @@
 		</div>			
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	
 	<script src="public/js/index.js"></script>
 </body>
 </html>

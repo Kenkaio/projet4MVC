@@ -14,8 +14,8 @@
   for ($i=0; $i < count($message); $i++) { 
     $date = date_create($message[$i]['date_envoi']);
     $echoDate = date_format($date, 'd-m-Y H:i');
-  ?><tr>
-      <td><input type="checkbox" name="checkMail" ></td>
+  ?><tr id="tr<?= $message[$i]['id'] ?>">
+      <td><input type="checkbox" name="viewed" id="viewedMes<?= $message[$i]['id'] ?>" onclick='changeStatus(viewedMes<?= $message[$i]['id'] ?>)'/></td>
       <td><?=$message[$i]['expe'] ?></td>
       <td><em><?= $message[$i]['subject'] ?></em></td>
       <td><?= $message[$i]['text'] ?></td>

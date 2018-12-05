@@ -237,6 +237,3 @@ $('.modif').on('click', function(){
 $('#deleR46').on("click", function(){
 	console.log("salut");
 });
-
-/*------ Partie messagerie ------*/
-

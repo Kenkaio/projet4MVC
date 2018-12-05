@@ -9,7 +9,6 @@
             <th>Date</th>
             <th>Auteur</th>
             <th>Contenu</th>
-            <th>Supprimer</th>
         </tr> 
     </table>  <?php
   for ($i=0; $i < count($message); $i++) { 
@@ -20,7 +19,6 @@
       <td><?= $message[$i]['date'] ?></td>
       <td><?= $message[$i]['auteur'] ?></td>
       <td><?= $message[$i]['contenu'] ?></td>
-      <td id='deleC<?= $message[$i]['id'] ?>' class="modif"><img src="../public/images/croix.png" alt="édititon"></td>
     </tr>
     <?php
   }

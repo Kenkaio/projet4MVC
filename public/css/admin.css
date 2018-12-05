@@ -59,3 +59,29 @@ sup{
 	font-weight: bold;
 	border-radius: 50%;
 }
+
+#newPost{
+	width: 80%;
+	margin: auto;
+	margin-top: 100px;
+}
+
+#titlePost{
+	margin-bottom: 20px;
+}
+
+#contentAdminPost{
+	position: absolute;
+	width: 1500px;
+	right: -500px;
+}
+
+#contentAdminComments{
+	position: absolute;
+	margin-left: 250px;
+	margin-top: 50px;
+}
+
+.contenuRep{
+	margin-left: 50px;
+}

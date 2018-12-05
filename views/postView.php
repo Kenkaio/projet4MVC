@@ -67,11 +67,6 @@
                     </span>                                        
                     </br>                                   
                     <span id='contenuRep<?=$response['id']?>'><?= $response['contenuRep'] ?></span>
-                    <form action='../models/modelReceptionFichier.php' method='post' enctype='multipart/form-data' id='formSignalementRep'>
-                        <input type='hidden' name='idSignalementCom' value='<?= $response['id']?>'></input>  
-                        <input type='hidden' name='idArt' value='<?=$_GET['id']?>'></input>
-                        <input type='submit' class='signalerRep' name='signalerRep' value='Signaler' id='signaler' onClick="signalementRep()"></input>
-                    </form> 
                 </div>
             <?php
             }

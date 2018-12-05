@@ -65,6 +65,14 @@ function responses()
 	return $req;
 }
 
+function signalementC()
+{
+	$db = dbConnect();
+	$req = $db->query("SELECT * FROM commentaires WHERE signalements = true");
+	return $req;
+}
+
+
 function messages()
 {
 	$db = dbConnect();
@@ -113,4 +121,13 @@ function deleteC($id){
 	$db = dbConnect();                   
     $req = $db->prepare("DELETE FROM commentaires WHERE id=?");
     $req->execute(array($id));
+}
+
+function addPost($title, $content){
+	$db = dbConnect();
+	$req = $db->prepare('INSERT INTO articles (titre, contenu) VALUES (:titre, :contenu)');
+	$req->execute(array(
+        'titre' => htmlspecialchars($title), 
+        'contenu' => htmlspecialchars($content)
+    )); 
 }

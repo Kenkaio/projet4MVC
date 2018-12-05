@@ -15,7 +15,7 @@
     $date = date_create($message[$i]['date_envoi']);
     $echoDate = date_format($date, 'd-m-Y H:i');
   ?><tr>
-      <td><input type="checkbox" name="checkMail" onclick="deleteMsg(<?=$message[$i]['id'] ?>)"></td>
+      <td><input type="checkbox" name="checkMail" ></td>
       <td><?=$message[$i]['expe'] ?></td>
       <td><em><?= $message[$i]['subject'] ?></em></td>
       <td><?= $message[$i]['text'] ?></td>

@@ -87,4 +87,32 @@
       $put = json_encode($put);
       file_put_contents('../models/json/numberM.json', $put);
     }
+    if (isset($_POST['reloadSign'])) {
+      $signalements = signalementC();
+      $arrayCom = array();
+      fclose(fopen('../models/json/arrayS.json', 'w'));
+      $i=0;
+      while ($signalement = $signalements->fetch())
+      {    
+          $arrayCom = $signalement;
+
+          $js = file_get_contents('../models/json/arrayS.json');
+
+          $js = json_decode($js, true);
+
+          $js[] = $arrayCom;
+
+          $js = json_encode($js);
+          file_put_contents('../models/json/arrayS.json', $js);
+          $i++;
+      }      
+
+      $arrayNumber = array();
+      fclose(fopen('../models/json/numberS.json', 'w'));
+      $put = file_get_contents('../models/json/numberS.json');
+      $put = json_decode($put, true);
+      $put[] = $i;
+      $put = json_encode($put);
+      file_put_contents('../models/json/numberS.json', $put);
+    }
 ?>

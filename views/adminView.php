@@ -64,7 +64,7 @@
                     </a>
                 </li>
 
-                <li class="dropdown">
+                <li class="dropdown" id='post' onclick="newPost()">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-book" aria-hidden="true"></i>
                     </a>
@@ -91,7 +91,7 @@
                 <!-- /.col-lg-12 -->
             </div>
             <div class="row">
-                <div class="col-lg-offset-2 col-lg-2 col-md-6">
+                <div class="col-lg-offset-1 col-lg-4 col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">
@@ -113,7 +113,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-offset-1 col-lg-2 col-md-6">
+                <div class="col-lg-offset-2 col-lg-4 col-lg-offset-1 col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">
@@ -135,7 +135,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-offset-1 col-lg-2 col-lg-offset-2 col-md-6">
+                <div class="col-lg-offset-1 col-lg-4 col-md-6">
                     <div class="panel panel-green">
                         <div class="panel-heading">
                             <div class="row">
@@ -156,7 +156,29 @@
                             </div>
                         </a>
                     </div>
-                </div>                
+                </div>
+                <div class="col-lg-offset-2 col-lg-4 col-lg-offset-1 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-tasks fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge" id="hudeSign"></div>
+                                    <div>Commentaires signalés !</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#signalements">
+                            <div class="panel-footer" id="showSignal" onclick='viewComs("sign")'>
+                                <span class="pull-left">Voir les détails</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>                 
             </div> 
             <div class="row" id="mesArticles">
                 <div class="col-lg-12 col-md-12">
@@ -196,7 +218,21 @@
                     </table>   
                     <button class="viewOff" id="rep" onclick='viewComs("rep")'>Marquer comme lu</button>              
                 </div>         
-            </div>          
+            </div>  
+            <div class="row" id="newPost">
+                <div class="col-lg-12 col-md-12">
+                    <form action="../controllers/admin.php" method="post" enctype="multipart/form-data" id="addPost">
+                        <input type="text" id="titlePost" name="titlePost">
+                        <textarea id="textPost" class='ckeditor' style='height: 30em' name="contentPost"></textarea>
+                        <input type='submit' id="confirmPost" value="valider" name='confirmAddPost'></input>
+                    </form>                    
+                </div>         
+            </div> 
+            <div class="row" id="signalPost">
+                <div class="col-lg-12 col-md-12">   
+                    <div id="returnSign"></div>        
+                </div>         
+            </div>           
         </div>
         <!-- /#page-wrapper -->
     </div>
@@ -220,6 +256,7 @@
     <script src="../models/sbAdmin/dist/js/sb-admin-2.js"></script>
 
     <script src="../public/js/messagerie.js"></script>
+    <script src="../public/js/newPost.js"></script>
     <script src="../public/js/admin.js"></script>
 
 

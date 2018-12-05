@@ -18,6 +18,7 @@ function viewMessagerie(){
 $('#lu').on('click', function(){
 	id = document.querySelectorAll('input[type="checkbox"]:checked');
 	for (var i = 0; i < id.length; i++) {
+    	console.log(id);
     	$.post("../models/modelReceptionFichier.php", {	
 	    	mes:id[i].id
 	    }, function (data){
@@ -33,13 +34,3 @@ $('#lu').on('click', function(){
 		$('body').css({'cursor':'default'});
    	}, 1500);	  	
 });   	
-
-function deleteMsg(id){
-	$.post("../models/modelReceptionFichier.php", {	
-	    	deleteMsg:'reload'
-	    }, function (data){
-	    	$('.return').html(data);
-	    });
-		xhr.open("GET","../models/json/numberR.json",true);
-		xhr.send(null);
-}

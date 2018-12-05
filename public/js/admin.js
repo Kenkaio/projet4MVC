@@ -9,6 +9,8 @@ function hideAll()
 	$('#newResponses').hide();
 	$('.viewOff').hide();
 	$('#mails').hide();	
+	$('#newPost').hide();
+	$('#signalPost').hide();
 }
 
 /*------- Génération chiffres nouveaux com / rep -------*/
@@ -21,6 +23,7 @@ $(document).ready(function() {
 		upNumber('rep');
 		upNumber('com');
 		upNumber('mail');
+		upNumber('sign');
 	},1500);
 });
 
@@ -35,6 +38,11 @@ $('.fa-bell').on('click', function(){
 $('#showArticles').on('click', function(){
 	hideAll();
 	$('#tablePosts').fadeIn(1000);
+});
+
+$('#showSignal').on('click', function(){
+	hideAll();
+	$('#signalPost').fadeIn(1000);
 });
 
 $('#showComments').on('click', function(){
@@ -89,6 +97,9 @@ function viewComs(choice){
 			else if(choice == 'com'){
 				document.getElementById('tableComments').innerHTML = xhr.response;
 			}
+			else if(choice == 'sign'){
+				document.getElementById('returnSign').innerHTML = xhr.response;
+			}
 		}
 	}
 	if (choice == 'rep') {
@@ -98,7 +109,11 @@ function viewComs(choice){
 	else if (choice == 'com') {
 		xhr.open("GET","../views/viewComments.php",true);
 		xhr.send(null);
-	}	
+	}
+	else if (choice == 'sign') {
+		xhr.open("GET","../views/viewSignalements.php",true);
+		xhr.send(null);
+	}		
 }
 
 /*------- affichage des nombres (nouveaux com, nouvelles rep) -------*/
@@ -117,6 +132,9 @@ function upNumber(choice){
 			else if(choice == 'mail'){
 				document.getElementById('supMes').innerHTML = xhr.response[1];				
 				document.getElementById('supBut').innerHTML = xhr.response[1];
+			}
+			else if(choice == 'sign'){
+				document.getElementById('hudeSign').innerHTML = xhr.response[1];	
 			}
 		}
 	}
@@ -145,6 +163,15 @@ function upNumber(choice){
 	    	$('.return').html(data);
 	    });
 		xhr.open("GET","../models/json/numberM.json",true);
+		xhr.send(null);
+	}
+	else if (choice == 'sign') {
+		$.post("../models/modelReload.php", {	
+	    	reloadSign:'reload'
+	    }, function (data){
+	    	$('.return').html(data);
+	    });
+		xhr.open("GET","../models/json/numberS.json",true);
 		xhr.send(null);
 	}	
 }
@@ -206,6 +233,10 @@ $('.modif').on('click', function(){
 	self.location.href="admin.php?com="+id;
 });
 
+
+$('#deleR46').on("click", function(){
+	console.log("salut");
+});
 
 /*------ Partie messagerie ------*/
 

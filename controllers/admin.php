@@ -65,5 +65,10 @@ if(isset($_GET['com'])){
 	}
 }
 
+if(isset($_POST['confirmAddPost'])){ 
+	addPost($_POST['titlePost'], $_POST['contentPost']);
+	header('location:admin.php');
+}
+
 ob_end_flush();  
 

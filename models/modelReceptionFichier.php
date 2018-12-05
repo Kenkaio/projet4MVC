@@ -76,16 +76,7 @@ session_start();
                         $_POST['idSignalementCom']
                     )); 
                     redirect_to('location:../controllers/post.php?id=' . $_POST['idArt']);
-                }  
-
-                /*------- Signalement réponse ------*/
-                if(isset($_POST['signalerRep'])){
-                    $req = $db->prepare('UPDATE reponses SET signalementsRep=signalementsRep+1  WHERE id=?');
-                    $req->execute(array(
-                        $_POST['idSignalementCom']
-                    )); 
-                    redirect_to('location:../controllers/post.php?id=' . $_POST['idArt']);
-                }    
+                } 
 
                 /*------- Ajout commentaire ------*/
                 if(isset($_POST['confirmerAjoutCom'])){
@@ -126,11 +117,32 @@ session_start();
                     $req->execute(array(
                         substr($mes, 5)
                     ));
+                    redirect_to('location:admin.php');
+                }
+
+                if (isset($_GET['idC'])) {
+                    $req = $db->prepare('DELETE FROM commentaires WHERE id=?');
+                    $req->execute(array($_GET['idC']));
+                    redirect_to('location:../controllers/admin.php');
+                }
+
+                if (isset($_GET['idR'])) {
+                    $req = $db->prepare('DELETE FROM reponses WHERE id=?');
+                    $req->execute(array($_GET['idR']));
+                    redirect_to('location:../controllers/admin.php');
+                }
+
+                if (isset($_GET['sign'])) {
+                    $req = $db->prepare('DELETE FROM commentaires WHERE id=?');
+                    $req->execute(array($_GET['sign']));
+                    redirect_to('location:../controllers/admin.php');
                 }
 
                 /* ------- Affichage message spec --------*/
                 if (isset($_POST['deleteMsg'])) {
-
+                    $req = $db->prepare('DELETE FROM reponses WHERE id=?');
+                    $req->execute(array($_GET['idR']));
+                    redirect_to('location:../controllers/admin.php');
                 }
                 ob_end_flush();         
        		?>

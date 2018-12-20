@@ -4,26 +4,26 @@
     <title>Mes chapitres</title>
     <link rel="stylesheet" type="text/css" href="../public/css/index.css">
     <link rel="stylesheet" type="text/css" href="../public/css/chapitre.css">
-    <link href="../models/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
-    
-    <?php 
+    <link href="../public/assets/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <?php
         include '../views/menu.php';
     ?>
-    
+
 </head>
 <body>
     <div class="contenuArticles">
         <div id='articleComplet'>
             <?php
-                $content = $post['contenu'];
+                $content = $posts['contenu'];
                 $array1 = array('&lt;', '&gt;', '&quot;', '&amp;', '&eacute;', '&#39;', '&egrave;', '&ccedil;', '&agrave;', '=&nbsp;');
                 $array2 = array('<', '>', '"', '&', 'é', '\'', 'è', 'ç', 'à', '=');
                 $finalContent = str_replace($array1, $array2, $content);
             ?>
             <h3>
-                <?= $post['titre'] ?>
-                <em>le <?= $post['date'] ?></em>
+                <?= $posts['titre'] ?>
+                <em>le <?= $posts['date'] ?></em>
             </h3>
             <span id='contenu'><?= $finalContent ?></span>
         </div>
@@ -39,13 +39,13 @@
                 <p><strong class='glyphicon glyphicon-user'><?= htmlspecialchars($comment['auteur']) ?></strong> Le <?= $echoDate ?></p>
                 <p><?= $comment['contenu'] ?></p>
                 <input type='button' id="reponseCom<?= $comment['id']?>"  class='repondre' value='Répondre'></input>
-                <form action='../models/modelReceptionFichier.php' method='post' enctype='multipart/form-data' id='formSignalementCom'>
-                    <input type='hidden' name='idSignalementCom' value='<?= $comment['id']?>'></input>   
+                <form action='../controllers/reload.php' method='post' enctype='multipart/form-data' id='formSignalementCom'>
+                    <input type='hidden' name='idSignalementCom' value='<?= $comment['id']?>'></input>
                     <input type='hidden' name='idArt' value='<?=$_GET['id']?>'></input>
                     <input type='submit' class='signalerCom' name='signalerCom' value='Signaler' id='signaler' onClick="signalementCom()"></input>
                 </form>
                 <!-- Textarea de réponse -->
-                <form action='../models/modelReceptionFichier.php' method='post' enctype='multipart/form-data' id='formArticle'>
+                <form action='../controllers/reload.php' method='post' enctype='multipart/form-data' id='formArticle'>
                     <input type='hidden' name='idCom' value='<?= $comment['id']?>'></input>
                     <input type='hidden' name='idArt' value='<?=$_GET['id']?>'></input>
                     <div id='editTextarea<?= $comment['id']?>' class='editTextarea'>
@@ -57,15 +57,16 @@
             </div>
 
         <?php
-            $responses = getResponses($comment['id']);
+            $response = new responses();
+            $responses = $response->getResponses($comment['id']);
             while ($response = $responses->fetch()){
                 $date1 = date_create($response['dateRep']);
                 $echoDate1 = date_format($date1, 'd-m-Y H:i:s');
-            ?>  <div class='contenuRep'>                                    
+            ?>  <div class='contenuRep'>
                     <span id='auteurRep'>
                         <strong class='glyphicon glyphicon-user'><?= $response['auteurRep'] ?></strong> Le <?= $echoDate1 ?>
-                    </span>                                        
-                    </br>                                   
+                    </span>
+                    </br>
                     <span id='contenuRep<?=$response['id']?>'><?= $response['contenuRep'] ?></span>
                 </div>
             <?php
@@ -73,7 +74,7 @@
         }
         ?>
         <h2><a href='#ajoutCommentaire'>Ajouter un commentaire</a></h2>
-        <form action="../models/modelReceptionFichier.php" method="post" enctype='multipart/form-data' id='ajoutCommentaire'>
+        <form action="../controllers/reload.php" method="post" enctype='multipart/form-data' id='ajoutCommentaire'>
             <input type='hidden' name='idArt' value='<?=$_GET['id']?>'></input>
             <input type="text" name="auteurCom" id="auteurCom">
             <textarea type="text" name="contenuCom" rows="10" id="reponseCom"></textarea>

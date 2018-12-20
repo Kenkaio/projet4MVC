@@ -1,6 +1,6 @@
-<?php     
-  require('../models/modelReload.php');
-  $message = file_get_contents('../models/json/messagerie.json');
+<?php
+  require('../controllers/reload.php');
+  $message = file_get_contents('../public/assets/json/messagerie.json');
   $message = json_decode($message, true);
 ?>
   <tr>
@@ -9,9 +9,9 @@
       <th>Objet</th>
       <th>Message</th>
   </tr><?php
-  
 
-  for ($i=0; $i < count($message); $i++) { 
+
+  for ($i=0; $i < count($message); $i++) {
     $date = date_create($message[$i]['date_envoi']);
     $echoDate = date_format($date, 'd-m-Y H:i');
   ?><tr id="tr<?= $message[$i]['id'] ?>">
@@ -20,6 +20,5 @@
       <td><em><?= $message[$i]['subject'] ?></em></td>
       <td><?= $message[$i]['text'] ?></td>
     </tr>
-      <?php 
+      <?php
   }?>
-    

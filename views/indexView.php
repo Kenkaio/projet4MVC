@@ -3,16 +3,16 @@
     <head>
         <meta charset="utf-8" />
         <title>Mes chapitres</title>
-        <link href="../public/css/chapitre.css" rel="stylesheet" /> 
-        <link href="../public/css/index.css" rel="stylesheet" />         
-        <link href="../models/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
+        <link href="../public/css/chapitre.css" rel="stylesheet" />
+        <link href="../public/css/index.css" rel="stylesheet" />
+        <link href="../public/assets/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-        <?php 
+        <?php
             include '../views/menu.php';
         ?>
     </head>
-        
+
     <body>
         <div class="contenuArticles">
             <?php
@@ -25,7 +25,7 @@
                 $date = date_create($data['date']);
                 $echoDate = date_format($date, 'd-m-Y H:i:s');
             ?>
-            <div id='article'>  
+            <div id='article'>
                     <div id='titreDate'><span id='titreArticle'><?= $data['titre'] ?></span></div>
                     <span id='date'>Edité le : <?= $echoDate ?> </span>
                     <span class='contenu'><?= $finalContent ?></span>

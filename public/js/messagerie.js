@@ -18,18 +18,18 @@ function viewMessagerie(){
 $('#lu').on('click', function(){
 	id = document.querySelectorAll('input[type="checkbox"]:checked');
 	for (var i = 0; i < id.length; i++) {
-    	$.post("../models/modelReceptionFichier.php", {	
+    	$.post("../controllers/reload.php", {
 	    	mes:id[i].id
 	    }, function (data){
 	    	$('.return').html(data);
 	    });
-    } 	
-   	setTimeout(function(){ 
-   		viewMessagerie(); 
+    }
+   	setTimeout(function(){
+   		viewMessagerie();
    	}, 1000);
    	$('body').css({'cursor':'wait'});
-   	setTimeout(function(){ 
+   	setTimeout(function(){
 	   	upNumber('mail');
 		$('body').css({'cursor':'default'});
-   	}, 1500);	  	
-});   	
+   	}, 1500);
+});

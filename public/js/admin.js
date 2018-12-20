@@ -8,7 +8,7 @@ function hideAll()
 	$('#newComments').hide();
 	$('#newResponses').hide();
 	$('.viewOff').hide();
-	$('#mails').hide();	
+	$('#mails').hide();
 	$('#newPost').hide();
 	$('#signalPost').hide();
 }
@@ -16,10 +16,10 @@ function hideAll()
 /*------- Génération chiffres nouveaux com / rep -------*/
 hideAll();
 
-$(document).ready(function() { 
+$(document).ready(function() {
 	viewComs('com');
 	viewComs('rep');
-	setInterval(function(){ 
+	setInterval(function(){
 		upNumber('rep');
 		upNumber('com');
 		upNumber('mail');
@@ -67,20 +67,20 @@ $('#recep').on('click', function(){
 
 /*------- xml en fonction des navigateurs -------*/
 function getXhr(){
-    var xhr = null; 
+    var xhr = null;
 	if(window.XMLHttpRequest) // Firefox et autres
-	   xhr = new XMLHttpRequest(); 
-	else if(window.ActiveXObject){ // Internet Explorer 
+	   xhr = new XMLHttpRequest();
+	else if(window.ActiveXObject){ // Internet Explorer
 	   try {
                 xhr = new ActiveXObject("Msxml2.XMLHTTP");
             } catch (e) {
                 xhr = new ActiveXObject("Microsoft.XMLHTTP");
             }
 	}
-	else { // XMLHttpRequest non supporté par le navigateur 
-	   alert("Votre navigateur ne supporte pas les objets XMLHTTPRequest..."); 
-	   xhr = false; 
-	} 
+	else { // XMLHttpRequest non supporté par le navigateur
+	   alert("Votre navigateur ne supporte pas les objets XMLHTTPRequest...");
+	   xhr = false;
+	}
     return xhr;
 }
 
@@ -113,7 +113,7 @@ function viewComs(choice){
 	else if (choice == 'sign') {
 		xhr.open("GET","../views/viewSignalements.php",true);
 		xhr.send(null);
-	}		
+	}
 }
 
 /*------- affichage des nombres (nouveaux com, nouvelles rep) -------*/
@@ -130,81 +130,65 @@ function upNumber(choice){
 				document.getElementById('hudeCom').innerHTML = xhr.response[1];
 			}
 			else if(choice == 'mail'){
-				document.getElementById('supMes').innerHTML = xhr.response[1];				
+				document.getElementById('supMes').innerHTML = xhr.response[1];
 				document.getElementById('supBut').innerHTML = xhr.response[1];
 			}
 			else if(choice == 'sign'){
-				document.getElementById('hudeSign').innerHTML = xhr.response[1];	
+				document.getElementById('hudeSign').innerHTML = xhr.response[1];
 			}
 		}
 	}
 	if (choice == 'rep') {
-		$.post("../models/modelReload.php", {	
-	    	reloadRep:'reload'
-	    }, function (data){
-	    	$('.return').html(data);
-	    });
-		xhr.open("GET","../models/json/numberR.json",true);
+		$.post("../controllers/reload.php", { reloadRep:'reload' });
+		xhr.open("GET","../public/assets/json/numberR.json",true);
 		xhr.send(null);
 	}
 	else if (choice == 'com') {
-		$.post("../models/modelReload.php", {	
-	    	reloadCom:'reload'
-	    }, function (data){
-	    	$('.return').html(data);
-	    });
-		xhr.open("GET","../models/json/numberC.json",true);
+		$.post("../controllers/reload.php", { reloadCom: "reload" });
+		xhr.open("GET","../public/assets/json/numberC.json",true);
 		xhr.send(null);
-	}	
+	}
 	else if (choice == 'mail') {
-		$.post("../models/modelReload.php", {	
-	    	reloadMail:'reload'
-	    }, function (data){
-	    	$('.return').html(data);
-	    });
-		xhr.open("GET","../models/json/numberM.json",true);
+		$.post("../controllers/reload.php", { reloadMes: "reload" });
+		xhr.open("GET","../public/assets/json/numberM.json",true);
 		xhr.send(null);
 	}
 	else if (choice == 'sign') {
-		$.post("../models/modelReload.php", {	
-	    	reloadSign:'reload'
-	    }, function (data){
-	    	$('.return').html(data);
-	    });
-		xhr.open("GET","../models/json/numberS.json",true);
+		$.post("../controllers/reload.php", { reloadSign: "reload" });
+		xhr.open("GET","../public/assets/json/numberS.json",true);
 		xhr.send(null);
-	}	
+	}
 }
 
 /*------- fonction ajax -------*/
 $('.viewOff').on('click', function(){
 	var choice = this.id;
-	id = document.querySelectorAll('input[type="checkbox"]:checked');    
+	id = document.querySelectorAll('input[type="checkbox"]:checked');
 	for (var i = 0; i < id.length; i++) {
-    	$.post("../models/modelReceptionFichier.php", {	
+    	$.post("../controllers/reload.php", {
 	    	data:id[i].id
 	    }, function (data){
 	    	$('.return').html(data);
 	    });
-    } 	
-   	setTimeout(function(){ 
-   		viewComs(choice); 
+    }
+   	setTimeout(function(){
+   		viewComs(choice);
    	}, 1000);
    	$('body').css({'cursor':'wait'});
-   	setTimeout(function(){ 
+   	setTimeout(function(){
    		if (choice == "rep") {
 	   		upNumber('rep');
 		}else{
 		   	upNumber('com');
 		}
 		$('body').css({'cursor':'default'});
-   	}, 1500);	   	
-});   		
+   	}, 1500);
+});
 
 /*------- propriété css -------*/
 var numberCheked = 0;
 function changeStatus(thisInput){
-	
+
 	var id = thisInput.id.substr(9);
 	if (thisInput.checked) {
 		$('#tr'+id).css({
@@ -229,11 +213,6 @@ function changeStatus(thisInput){
 
 $('.modif').on('click', function(){
 	id = this.id;
-	hideAll();	
+	hideAll();
 	self.location.href="admin.php?com="+id;
-});
-
-
-$('#deleR46').on("click", function(){
-	console.log("salut");
 });

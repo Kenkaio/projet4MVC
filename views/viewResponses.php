@@ -1,8 +1,8 @@
-<?php     
-  require('../models/modelReload.php');
+<?php
 
-  $message = file_get_contents('../models/json/arrayR.json');
-  $message = json_decode($message, true); 
+
+  $message = file_get_contents('../public/assets/json/arrayR.json');
+  $message = json_decode($message, true);
 
   ?> <table id="tableResponses" class="table table-bordered table-striped table-condensed">
         <tr>
@@ -11,9 +11,9 @@
             <th>Date</th>
             <th>Auteur</th>
             <th>Contenu</th>
-        </tr> 
+        </tr>
     </table>  <?php
-  for ($i=0; $i < count($message); $i++) { 
+  for ($i=0; $i < count($message); $i++) {
     ?>
     <tr id="tr<?= $message[$i]['id'] ?>">
       <td><input type="checkbox" name="viewed" id="viewedRep<?= $message[$i]['id'] ?>" onclick='changeStatus(viewedRep<?= $message[$i]['id'] ?>)'/></td>

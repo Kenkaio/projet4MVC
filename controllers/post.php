@@ -1,16 +1,18 @@
 <?php
 
-require('../models/modelCoBdd.php');
-require('../models/modelBillets.php');
+require '../models/class/autoloader.php';
+autoloader::register();
+
+$post = new post();
 
 if (isset($_GET['id']) && $_GET['id'] > 0) {
-    $post = getPost($_GET['id']);
-
-    $comments = getComments($_GET['id']);
+    $posts = $post->getPost($_GET['id']);
+    $comment = new comments();
+    $comments = $comment->getComments($_GET['id']);
     require('../views/postView.php');
 }
 else {
-	$posts = getPosts();
+	$posts = $post->getPosts();
     require('../views/indexView.php');
 }
 

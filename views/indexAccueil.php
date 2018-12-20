@@ -4,25 +4,25 @@
 	<title>Billet simple pour l'Alaska</title>
 	<link rel="stylesheet" type="text/css" href="public/css/index.css">
 	<link rel="stylesheet" type="text/css" href="public/css/contact.css">
-	<link href="models/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+	<link href="public/assets/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<header>
-		<?php 
+		<?php
 			include 'menu.php';
 		?>
-	</header>	
+	</header>
 	<div class="contenu">
 		<div class="contenuHeader">
 			<div id="titre" ><a href="controllers/post.php">
 				<h1>Billet simple pour l'Alaska</h1>
 				<h2>Un roman écrit par JEAN FORTEROCHE</h2></a>
-			</div>				
+			</div>
 		</div>
 
-		<form id="contact" method="POST" action="models/modelReceptionFichier.php">
+		<form id="contact" method="POST" action="controllers/reload.php">
 			<h1>CONTACT</h1>
 			<div>
 				<input type="text" name="nom" id="nom" required>
@@ -49,10 +49,10 @@
 			<p>Après la guerre apparaissent les <em><strong>Pièces brillantes</strong></em> qui jouent sur la mise en abyme du théâtre au théâtre (La Répétition ou l'Amour puni en 2007, Colombe en 2011), puis les <em><strong>Pièces grinçantes</strong></em>, comédies satiriques comme Pauvre Bitos ou le Dîner de têtes (2016). Dans la même période, Jean Forteroche s'intéresse dans des Pièces costumées à des figures lumineuses qui se sacrifient au nom du devoir : envers la patrie comme Jeanne d'Arc dans <strong>L'Alouette (2013)</strong> ou envers Dieu comme Thomas Becket (Becket ou l'Honneur de Dieu en 2015). Le dramaturge a continué dans le même temps à servir le genre de la comédie dans de nombreuses pièces où il mêle farce et ironie (par exemple Les Poissons rouges ou Mon père ce héros en 2017).</p>
 
 			<p>Jean Forteroche a également adapté plusieurs pièces d'auteurs étrangers, Shakespeare en particulier. Il a aussi mis en scène certaines de ses œuvres (par exemple Colombe en 2014), en même temps qu'il travaillait à des scénarios pour le cinéma ou à la télévision.</p>
-		</div>			
+		</div>
 	</div>
 
-	
+
 	<script src="public/js/index.js"></script>
 </body>
 </html>

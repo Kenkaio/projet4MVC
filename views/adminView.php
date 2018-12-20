@@ -12,19 +12,19 @@
     <link href="../public/css/admin.css" rel="stylesheet">
 
     <!-- Bootstrap Core CSS -->
-    <link href="../models/sbAdmin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">    
+    <link href="../public/assets/sbAdmin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../models/sbAdmin/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="../public/assets/sbAdmin/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../models/sbAdmin/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../public/assets/sbAdmin/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="../models/sbAdmin/vendor/morrisjs/morris.css" rel="stylesheet">
+    <link href="../public/assets/sbAdmin/vendor/morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../models/sbAdmin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../public/assets/sbAdmin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -44,7 +44,6 @@
 <body>
 
     <div id="wrapper">
-
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -80,8 +79,8 @@
                         <li><a href="admin.php?deco"><i class="fa fa-sign-out fa-fw"></i> Déconnexion</a>
                         </li>
                     </ul>
-                </li>                
-            </ul>           
+                </li>
+            </ul>
         </nav>
         <div id="page-wrapp">
             <div class="row">
@@ -105,7 +104,7 @@
                             </div>
                         </div>
                         <a href="#newComments">
-                            <div class="panel-footer" id="showComments" onclick='viewComs("com")'> 
+                            <div class="panel-footer" id="showComments" onclick='viewComs("com")'>
                                 <span class="pull-left">Voir les détails</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
@@ -158,7 +157,7 @@
                     </div>
                 </div>
                 <div class="col-lg-offset-2 col-lg-4 col-lg-offset-1 col-md-6">
-                    <div class="panel panel-green">
+                    <div class="panel panel-danger">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
@@ -178,18 +177,18 @@
                             </div>
                         </a>
                     </div>
-                </div>                 
-            </div> 
+                </div>
+            </div>
             <div class="row" id="mesArticles">
                 <div class="col-lg-12 col-md-12">
-                    <?php include('viewAllPost.php') ?>                   
-                </div>          
+                    <?php include('viewAllPost.php') ?>
+                </div>
             </div>
             <div class="row" id="adminArticle">
                 <div class="col-lg-12 col-md-12">
-                    <?php require('postAdminView.php') ?>                   
-                </div>  
-                <div class="viewed"></div>        
+                    <?php require('postAdminView.php') ?>
+                </div>
+                <div class="viewed"></div>
             </div>
             <div class="row" id="mails">
                 <div class="col-lg-offset-2 col-lg-1 col-md-6" id="menuMails">
@@ -197,66 +196,68 @@
                     <button class="optionsMessagerie"><img src="../public/images/envoi.png" alt="boite d'envoi">Envoyés</button>
                     <button class="optionsMessagerie"><img src="../public/images/corbeille.png" alt="corbeille">Supprimés</button>
                 </div>
-                <div class="col-lg-7 col-md-6" id="messageComplet">   
+                <div class="col-lg-7 col-md-6" id="messageComplet">
                     <div id="optionsMessagerie">
-                        <button id="lu">Marquer comme lu</button>                               
+                        <button id="lu">Marquer comme lu</button>
                     </div>
-                    <table id="ongletTableau" class="table table-bordered table-striped table-condensed"></table>    
-                </div>     
+                    <table id="ongletTableau" class="table table-bordered table-striped table-condensed"></table>
+                </div>
             </div>
             <div class="row" id="newComments">
                 <div class="col-lg-12 col-md-12">
                     <div class="cssTable">
                         <table id="tableComments" class="table table-bordered table-striped table-condensed">
-                        </table>  
-                    </div>                    
-                </div>     
-                <button class="viewOff" id="com" onclick='viewComs("com")'>Marquer comme lu</button>      
+                        </table>
+                    </div>
+                </div>
+                <button class="viewOff" id="com" onclick='viewComs("com")'>Marquer comme lu</button>
             </div>
             <div class="row" id="newResponses">
                 <div class="col-lg-12 col-md-12">
                     <div class="cssTable">
                         <table id="tableResponses" class="table table-bordered table-striped table-condensed">
                         </table>
-                    </div>   
-                    <button class="viewOff" id="rep" onclick='viewComs("rep")'>Marquer comme lu</button>              
-                </div>         
-            </div>  
+                    </div>
+                    <button class="viewOff" id="rep" onclick='viewComs("rep")'>Marquer comme lu</button>
+                </div>
+            </div>
             <div class="row" id="newPost">
                 <div class="col-lg-12 col-md-12">
                     <form action="../controllers/admin.php" method="post" enctype="multipart/form-data" id="addPost">
                         <input type="text" id="titlePost" name="titlePost">
                         <textarea id="textPost" class='ckeditor' style='height: 30em' name="contentPost"></textarea>
                         <input type='submit' id="confirmPost" value="valider" name='confirmAddPost'></input>
-                    </form>                    
-                </div>         
-            </div> 
+                    </form>
+                </div>
+            </div>
+
+
             <div class="row" id="signalPost">
-                <div class="col-lg-12 col-md-12">   
-                    <div id="returnSign"></div>        
-                </div>         
-            </div>           
+                <div class="col-lg-12 col-md-12">
+                    <div id="returnSign"></div>
+                </div>
+            </div>
         </div>
         <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="../models/sbAdmin/vendor/jquery/jquery.js"></script>
+    <script src="../public/assets/sbAdmin/vendor/jquery/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../models/sbAdmin/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../public/assets/sbAdmin/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../models/sbAdmin/vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="../public/assets/sbAdmin/vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="../models/sbAdmin/vendor/raphael/raphael.min.js"></script>
+    <script src="../public/assets/sbAdmin/vendor/raphael/raphael.min.js"></script>
     <!-- <script src="../models/sbAdmin/vendor/morrisjs/morris.js"></script> -->
     <!-- <script src="../models/sbAdmin/data/morris-data.js"></script> -->
 
     <!-- Custom Theme JavaScript -->
-    <script src="../models/sbAdmin/dist/js/sb-admin-2.js"></script>
+    <script src="../public/assets/sbAdmin/dist/js/sb-admin-2.js"></script>
 
     <script src="../public/js/messagerie.js"></script>
     <script src="../public/js/newPost.js"></script>

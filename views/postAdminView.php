@@ -1,11 +1,11 @@
 <?php
 	if (isset($_GET['id']) && $_GET['id'] > 0) {
-   		$posts = $post->getPost($_GET['id']);
+   		$post = $postManager->getPost($_GET['id']);
     	$comments = $comment->getComments($_GET['id']);
 
-	    $date = $posts['date'];
-		$titre = $posts['titre'];
-		$contenu = $posts['contenu'];
+	    $date = $post['date'];
+		$titre = $post['titre'];
+		$contenu = $post['contenu'];
 		/* --- array 1 et remplacé par array 2 dans le contenu afin d'afficher le contenu sous forme html ----- */
 		$array1 = array('&lt;', '&gt;', '&quot;', '&amp;', '&eacute;', '&#39;', '&egrave;', '&ccedil;', '&agrave;', '=&nbsp;');
 		$array2 = array('<', '>', '"', '&', 'é', '\'', 'è', 'ç', 'à', '=');
@@ -21,7 +21,7 @@
 		</div>
 		<div id="contentAdminComments">
 	<?php
-	 	$posts = $post->getPost($_GET['id']);
+        $posts = $postManager->getPost($_GET['id']);
         $comments = $comment->getComments($_GET['id']);
         while ($data = $comments->fetch()){
             $date = date_create($data['date']);

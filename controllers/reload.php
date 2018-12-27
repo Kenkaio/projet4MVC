@@ -10,7 +10,7 @@ ini_set("display_errors", 1);
 require '../models/class/autoloader.php';
 autoloader::register();
 
-$post = new post();
+$manager = new postManager();
 $comment = new comments();
 $response = new responses();
 $user = new user();
@@ -40,7 +40,7 @@ $message = new message();
         * Recharge nombre signalements
     */
     if (isset($_POST['reloadSign'])) {
-        $post->reloadSign();
+        $post = $manager->reloadSign();
     }
 
     /*

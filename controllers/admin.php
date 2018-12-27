@@ -5,7 +5,7 @@ ob_start();
 require '../models/class/autoloader.php';
 autoloader::register();
 
-$post = new post();
+$postManager = new postManager();
 $comment = new comments();
 $response = new responses();
 $user = new user();
@@ -28,31 +28,33 @@ if(empty($_SESSION['ouvert'])){
 if ($_SESSION['ouvert']) {
 	$totalComments = $comment->newComments();
 	$totalResponses = $response->newResponses();
-	$totalArticle = $post->posts();
-	$posts = $post->getPosts();
+	$totalArticle = $postManager->posts();
+	$posts = $postManager->getPosts();
 	$newMessage = $message->newMessage();
 	require('../views/adminView.php');
 
 	if (isset($_GET['id']) && $_GET['id'] > 0) {
-	    $posts = $post->getPost($_GET['id']);
+		$post = $postManager->getPost($_GET['id']);
 	    $comments = $comment->getComments($_GET['id']);
 	    require('../views/postAdminView.php');
 	}
 }
 
 if(isset($_POST['update'])){
-	$post->update(htmlspecialchars($_POST['contenuArt']), $_POST['idArt']);
+	$post = $postManager->getPost($_POST['idArt']);
+	$postManager->update($post);
 	header('location:admin.php');
 }
 
 if(isset($_GET['del'])){
-	$post->delete($_GET['del']);
+	$post = $postManager->getPost($_GET['id']);
+	$postManager->delete($post);
 	header('location:admin.php#mesArticles');
 }
 
 if(isset($_POST['delete'])){
-	$id = $_POST['idArt'];
-	delete($id);
+	$post = $postManager->getPost($_GET['id']);
+	$postManager->delete($post);
 	header('location:admin.php#mesArticles');
 }
 
@@ -67,7 +69,11 @@ if(isset($_GET['com'])){
 }
 
 if(isset($_POST['confirmAddPost'])){
-	$post->addPost($_POST['titlePost'], $_POST['contentPost']);
+	$post = new post([
+		'title' => htmlspecialchars($_POST['titlePost']),
+		'content' => htmlspecialchars($_POST['contentPost'])
+		]);
+	$postManager->addPost($post);
 	header('location:admin.php');
 }
 

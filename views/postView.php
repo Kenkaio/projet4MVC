@@ -57,7 +57,7 @@
             </div>
 
         <?php
-            $response = new responses();
+            $response = new response();
             $responses = $response->getResponses($comment['id']);
             while ($response = $responses->fetch()){
                 $date1 = date_create($response['dateRep']);

@@ -8,11 +8,11 @@ ini_set("display_errors", 1);
 
 /* charge la classe quand celle ci est appelée */
 require '../models/class/autoloader.php';
-autoloader::register();
+Autoloader::register();
 
 $manager = new postManager();
-$comment = new comments();
-$response = new responses();
+$comment = new comment();
+$response = new response();
 $user = new user();
 $message = new message();
     /*

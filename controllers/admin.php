@@ -3,22 +3,17 @@ session_start();
 ob_start();
 
 require '../models/class/autoloader.php';
-autoloader::register();
+Autoloader::register();
 
 $postManager = new postManager();
-$comment = new comments();
-$response = new responses();
+$comment = new comment();
+$response = new response();
 $user = new user();
 $message = new message();
 
 if (isset($_GET['deco'])) {
 
- 	session_start();
-
-	$_SESSION = array();
-	session_destroy();
-
-	header('Location:../index.php');
+		$user->logout();
 }
 
 if(empty($_SESSION['ouvert'])){
@@ -26,34 +21,28 @@ if(empty($_SESSION['ouvert'])){
 }
 
 if ($_SESSION['ouvert']) {
-	$totalComments = $comment->newComments();
-	$totalResponses = $response->newResponses();
-	$totalArticle = $postManager->posts();
+	$totalComments = $comment->countNewComments();
+	$totalResponses = $response->countNewResponses();
+	$totalArticle = $postManager->countPosts();
 	$posts = $postManager->getPosts();
-	$newMessage = $message->newMessage();
+	$newMessage = $message->countNewMessage();
 	require('../views/adminView.php');
 
 	if (isset($_GET['id']) && $_GET['id'] > 0) {
-		$post = $postManager->getPost($_GET['id']);
-	    $comments = $comment->getComments($_GET['id']);
+		$post = $postManager->getPostId($_GET['id']);
+	    $comments = $comment->getCommentsId($_GET['id']);
 	    require('../views/postAdminView.php');
 	}
 }
 
 if(isset($_POST['update'])){
-	$post = $postManager->getPost($_POST['idArt']);
-	$postManager->update($post);
+	$post = $postManager->getPostId($_POST['idArt']);
+	$postManager->update($_POST);
 	header('location:admin.php');
 }
 
 if(isset($_GET['del'])){
-	$post = $postManager->getPost($_GET['id']);
-	$postManager->delete($post);
-	header('location:admin.php#mesArticles');
-}
-
-if(isset($_POST['delete'])){
-	$post = $postManager->getPost($_GET['id']);
+	$post = $postManager->getPostId($_GET['del']);
 	$postManager->delete($post);
 	header('location:admin.php#mesArticles');
 }

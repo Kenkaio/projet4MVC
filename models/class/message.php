@@ -1,11 +1,11 @@
 <?php
 
-class message {
+class Message {
 
     /*
         * Compte le nombre de nouveaux messages
     */
-    public function newMessage(){
+    public function countNewMessage(){
         $db = dataBase::dbConnect();
         $req = $db->query("SELECT COUNT(*) FROM message WHERE nouveau = true");
         $newMessage = $req->fetch();
@@ -15,7 +15,7 @@ class message {
     /*
         * Selectionne les nouveaux messages
     */
-    public function messages()
+    public function getNewMessages()
     {
         $db = dataBase::dbConnect();
         $req = $db->query("SELECT * FROM message WHERE nouveau = true ORDER BY id DESC");

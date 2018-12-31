@@ -1,14 +1,14 @@
 <?php
 
 require '../models/class/autoloader.php';
-autoloader::register();
+Autoloader::register();
 
 $manager = new postManager();
 
 if (isset($_GET['id']) && $_GET['id'] > 0) {
-    $posts = $manager->getPost($_GET['id']);
-    $comment = new comments();
-    $comments = $comment->getComments($_GET['id']);
+    $posts = $manager->getPostId($_GET['id']);
+    $comment = new comment();
+    $comments = $comment->getCommentsId($_GET['id']);
     require('../views/postView.php');
 }
 else {

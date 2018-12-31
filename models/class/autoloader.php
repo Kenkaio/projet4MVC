@@ -1,12 +1,12 @@
 <?php
 
-class autoloader{
+class Autoloader{
 
     static function register(){
         spl_autoload_register(array(__CLASS__, 'autoload'));
     }
 
     static function autoload($class_name){
-        require '../models/class/' . $class_name . '.php';
+        require '../models/class/' .  ucfirst($class_name) . '.php';
     }
 }

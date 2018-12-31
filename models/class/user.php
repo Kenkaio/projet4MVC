@@ -1,5 +1,5 @@
 <?php
-class user {
+class User {
 
 	/*
         * Connecte un utilisateur

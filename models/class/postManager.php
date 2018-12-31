@@ -1,11 +1,11 @@
 <?php
 
-class postManager{
+class PostManager{
 
     /*
         * Compte le nombres d'articles
     */
-    public function posts()
+    public function countPosts()
     {
         $db = dataBase::dbConnect();
         return $db->query('SELECT COUNT(*) FROM articles')->fetchColumn();
@@ -14,22 +14,22 @@ class postManager{
     /*
         * Update le contenu d'un article
     */
-    public function update(post $post){
+    public function update(array $post){
         $db = dataBase::dbConnect();
         $req = $db->prepare('UPDATE articles SET contenu=? WHERE id=?');
         $req->execute(array(
-            $post->content,
-            $post->id
+            $post['contenuArt'],
+            $post['idArt']
         ));
     }
 
     /*
         * Delete un article
     */
-    public function delete(post $id){
+    public function delete(array $post){
         $db = dataBase::dbConnect();
         $req = $db->prepare('DELETE FROM articles WHERE id=?');
-        $req->execute(array($post->id));
+        $req->execute(array($post['id']));
     }
 
     /*
@@ -51,7 +51,7 @@ class postManager{
     /*
         * Selectionne un article précis
     */
-    public function getPost($postId)
+    public function getPostId($postId)
     {
         $db = dataBase::dbConnect();
         $req = $db->query("SELECT * FROM articles WHERE id=" . $postId);

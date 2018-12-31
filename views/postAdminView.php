@@ -1,7 +1,7 @@
 <?php
 	if (isset($_GET['id']) && $_GET['id'] > 0) {
-   		$post = $postManager->getPost($_GET['id']);
-    	$comments = $comment->getComments($_GET['id']);
+   		$post = $postManager->getPostId($_GET['id']);
+    	$comments = $comment->getCommentsId($_GET['id']);
 
 	    $date = $post['date'];
 		$titre = $post['titre'];
@@ -16,13 +16,12 @@
 				<input type='hidden' name='idArt' value='<?=$_GET['id']?>'></input>
 				<textarea for='contenuArt' name='contenuArt' id='contenuArt' class='ckeditor' style='height: 40em'><?= $contenuFinal ?></textarea>
 				<input type="submit" name="update" id="update">
-				<input type="submit" name="delete" id="supprimer">
 			</form>
 		</div>
 		<div id="contentAdminComments">
 	<?php
-        $posts = $postManager->getPost($_GET['id']);
-        $comments = $comment->getComments($_GET['id']);
+        $posts = $postManager->getPostId($_GET['id']);
+        $comments = $comment->getCommentsId($_GET['id']);
         while ($data = $comments->fetch()){
             $date = date_create($data['date']);
             $echoDate = date_format($date, 'd-m-Y H:i:s');
@@ -44,7 +43,6 @@
                     </span>
                     </br>
                     <span id='contenuRep<?=$dataR['id']?>'><?= $dataR['contenuRep'] ?></span>
-                    <a href="../controllers/reload.php?idR=<?= $dataR['id'] ?>"><img id='deleR<?= $dataR['id'] ?>' src="../public/images/croix.png" alt="édititon"></a>
                 </div></div></div>
             <?php
             }

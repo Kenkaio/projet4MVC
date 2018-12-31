@@ -1,6 +1,6 @@
 <?php
 
-class post{
+class Post{
 
     private $_id;
     private $_title;

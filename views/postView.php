@@ -30,11 +30,6 @@
 
         <h1 id='titreCom'>Commentaires</h1>
 
-        <?php
-        while ($comment = $comments->fetch()){
-            $date = date_create($comment['date']);
-            $echoDate = date_format($date, 'd-m-Y H:i:s');
-        ?>
             <div class='contenuCom'>
                 <p><strong class='glyphicon glyphicon-user'><?= htmlspecialchars($comment['auteur']) ?></strong> Le <?= $echoDate ?></p>
                 <p><?= $comment['contenu'] ?></p>
@@ -55,24 +50,15 @@
                     </div>
                 </form>
             </div>
-
-        <?php
-            $response = new response();
-            $responses = $response->getResponses($comment['id']);
-            while ($response = $responses->fetch()){
-                $date1 = date_create($response['dateRep']);
-                $echoDate1 = date_format($date1, 'd-m-Y H:i:s');
-            ?>  <div class='contenuRep'>
+        <?php while ($response = $responses->fetch()):?>
+                    <div class='contenuRep'>
                     <span id='auteurRep'>
                         <strong class='glyphicon glyphicon-user'><?= $response['auteurRep'] ?></strong> Le <?= $echoDate1 ?>
                     </span>
                     </br>
                     <span id='contenuRep<?=$response['id']?>'><?= $response['contenuRep'] ?></span>
                 </div>
-            <?php
-            }
-        }
-        ?>
+         <?php endwhile;?>
         <h2><a href='#ajoutCommentaire'>Ajouter un commentaire</a></h2>
         <form action="../controllers/reload.php" method="post" enctype='multipart/form-data' id='ajoutCommentaire'>
             <input type='hidden' name='idArt' value='<?=$_GET['id']?>'></input>

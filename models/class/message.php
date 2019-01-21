@@ -26,7 +26,7 @@ class Message {
         * Recharge le nombre de nouveaux messages
     */
     public function reloadMes(){
-        $messages = self::messages();
+        $messages = self::getNewMessages();
         $arrayCom = array();
         fclose(fopen('../public/assets/json/messagerie.json', 'w'));
         $i=0;

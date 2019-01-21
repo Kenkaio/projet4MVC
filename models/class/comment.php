@@ -46,7 +46,7 @@ class Comment{
     /*
         * Supprime un commentaire spécifique
     */
-    public function deleteC($id){
+    public function delete($id){
         $db = dataBase::dbConnect();
         $req = $db->prepare("DELETE FROM commentaires WHERE id=?");
         $req->execute(array($id));
@@ -60,7 +60,8 @@ class Comment{
         $db = dataBase::dbConnect();
         $comments = $db->prepare("SELECT * FROM commentaires WHERE idArticle=? ORDER BY id DESC");
         $comments->execute(array($_GET['id']));
-        return $comments;
+        $req = $comments->fetchAll(PDO::FETCH_OBJ);
+        return $req;
     }
 
     /*
@@ -68,31 +69,19 @@ class Comment{
     */
     public function reloadCom(){
         $comments = self::newComments();
-        $arrayCom = array();
-        fclose(fopen('../public/assets/json/arrayC.json', 'w'));
         $i=0;
         while ($comment = $comments->fetch())
         {
-            $arrayCom = $comment;
             $i++;
-            $js = file_get_contents('../public/assets/json/arrayC.json');
-
-            $js = json_decode($js, true);
-
-            $js[] = $arrayCom;
-
-            $js = json_encode($js);
-            file_put_contents('../public/assets/json/arrayC.json', $js);
-
         }
 
         $arrayNumber = array();
-        fclose(fopen('../public/assets/json/numberC.json', 'w'));
-        $put = file_get_contents('../public/assets/json/numberC.json');
+        fclose(fopen('public/assets/json/numberC.json', 'w'));
+        $put = file_get_contents('public/assets/json/numberC.json');
         $put = json_decode($put, true);
         $put[] = $i;
         $put = json_encode($put);
-        file_put_contents('../public/assets/json/numberC.json', $put);
+        file_put_contents('public/assets/json/numberC.json', $put);
     }
 
     /*

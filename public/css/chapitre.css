@@ -10,7 +10,7 @@
 
 #article, #articleComplet{
 	width: 80%;
-	margin: auto; 
+	margin: auto;
 	margin-top: 30px;
 	margin-bottom: 50px;
 	height: 200px;
@@ -29,15 +29,10 @@ a{
 }
 
 #titreArticle{
-	padding: 15px;	
+	padding: 15px;
 	font-size: 1.7em;
 	text-align: center;
 	font-weight: bold;
-}
-
-.contenu p, .contenu{
-	margin-left: 15px;
-	margin-top: 30px;
 }
 
 #articleComplet{
@@ -150,4 +145,8 @@ a button ,a button:hover{
 
 .texteCom{
 	margin-top: 10px;
+}
+
+#contact, #formAdmin{
+	margin-top: 50px;
 }

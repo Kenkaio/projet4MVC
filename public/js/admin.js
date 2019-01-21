@@ -1,68 +1,8 @@
-/* ----- Page d'accueil Admin.php -----*/
-
-function hideAll()
-{
-	$('#tablePosts').hide();
-	$('#newComments').hide();
-	$('#adminArticle').hide();
-	$('#newComments').hide();
-	$('#newResponses').hide();
-	$('.viewOff').hide();
-	$('#mails').hide();
-	$('#newPost').hide();
-	$('#signalPost').hide();
-}
-
-/*------- Génération chiffres nouveaux com / rep -------*/
-hideAll();
-
 $(document).ready(function() {
-	viewComs('com');
-	viewComs('rep');
 	setInterval(function(){
-		upNumber('rep');
 		upNumber('com');
-		upNumber('mail');
 		upNumber('sign');
 	},1500);
-});
-
-
-/*------- Affichage différentes section au clic -------*/
-$('.fa-bell').on('click', function(){
-	hideAll();
-	$('#newResponses').fadeIn(1000);
-	$('#newComments').fadeIn(1000);
-});
-
-$('#showArticles').on('click', function(){
-	hideAll();
-	$('#tablePosts').fadeIn(1000);
-});
-
-$('#showSignal').on('click', function(){
-	hideAll();
-	$('#signalPost').fadeIn(1000);
-});
-
-$('#showComments').on('click', function(){
-	upNumber('com');
-	hideAll();
-	$('#newComments').fadeIn(1000);
-});
-
-$('#showResponses').on('click', function(){
-	upNumber('rep');
-	hideAll();
-	$('#newResponses').fadeIn(1000);
-});
-
-$('#messagerie').on('click', function(){
-	$('#ongletTableau').fadeIn(1000);
-});
-
-$('#recep').on('click', function(){
-	$('#ongletTableau').fadeIn(1000);
 });
 
 /*------- xml en fonction des navigateurs -------*/
@@ -84,38 +24,6 @@ function getXhr(){
     return xhr;
 }
 
-/*------- affichage des commentaires / réponses -------*/
-function viewComs(choice){
-	var xhr = getXhr()
-	// On défini ce qu'on va faire quand on aura la réponse
-	xhr.onreadystatechange = function(){
-		// On ne fait quelque chose que si on a tout reçu et que le serveur est ok
-		if(xhr.readyState == 4 && xhr.status == 200){
-			if (choice == 'rep') {
-				document.getElementById('tableResponses').innerHTML = xhr.response;
-			}
-			else if(choice == 'com'){
-				document.getElementById('tableComments').innerHTML = xhr.response;
-			}
-			else if(choice == 'sign'){
-				document.getElementById('returnSign').innerHTML = xhr.response;
-			}
-		}
-	}
-	if (choice == 'rep') {
-		xhr.open("GET","../views/viewResponses.php",true);
-		xhr.send(null);
-	}
-	else if (choice == 'com') {
-		xhr.open("GET","../views/viewComments.php",true);
-		xhr.send(null);
-	}
-	else if (choice == 'sign') {
-		xhr.open("GET","../views/viewSignalements.php",true);
-		xhr.send(null);
-	}
-}
-
 /*------- affichage des nombres (nouveaux com, nouvelles rep) -------*/
 function upNumber(choice){
 	var xhr = getXhr()
@@ -123,39 +31,22 @@ function upNumber(choice){
 	xhr.onreadystatechange = function(){
 		// On ne fait quelque chose que si on a tout reçu et que le serveur est ok
 		if(xhr.readyState == 4 && xhr.status == 200){
-			if (choice == 'rep') {
-				document.getElementById('hudeRep').innerHTML = xhr.response[1];
-			}
-			else if(choice == 'com'){
+			if(choice == 'com'){
 				document.getElementById('hudeCom').innerHTML = xhr.response[1];
-			}
-			else if(choice == 'mail'){
-				document.getElementById('supMes').innerHTML = xhr.response[1];
-				document.getElementById('supBut').innerHTML = xhr.response[1];
 			}
 			else if(choice == 'sign'){
 				document.getElementById('hudeSign').innerHTML = xhr.response[1];
 			}
 		}
 	}
-	if (choice == 'rep') {
-		$.post("../controllers/reload.php", { reloadRep:'reload' });
-		xhr.open("GET","../public/assets/json/numberR.json",true);
-		xhr.send(null);
-	}
-	else if (choice == 'com') {
-		$.post("../controllers/reload.php", { reloadCom: "reload" });
-		xhr.open("GET","../public/assets/json/numberC.json",true);
-		xhr.send(null);
-	}
-	else if (choice == 'mail') {
-		$.post("../controllers/reload.php", { reloadMes: "reload" });
-		xhr.open("GET","../public/assets/json/numberM.json",true);
+	if (choice == 'com') {
+		$.post("index.php?action=reloadCom", { reloadCom: "reload" });
+		xhr.open("GET","public/assets/json/numberC.json",true);
 		xhr.send(null);
 	}
 	else if (choice == 'sign') {
-		$.post("../controllers/reload.php", { reloadSign: "reload" });
-		xhr.open("GET","../public/assets/json/numberS.json",true);
+		$.post("index.php?action=reloadSign", { reloadSign: "reload" });
+		xhr.open("GET","public/assets/json/numberS.json",true);
 		xhr.send(null);
 	}
 }

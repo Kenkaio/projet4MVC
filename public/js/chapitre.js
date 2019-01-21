@@ -7,22 +7,14 @@ $('.repondre').on('click', function(){
     changerValue('auteurCom'+id, 'textareaCom'+id);
 });
 
-$('h2').on('click', function(){	
+$('h2').on('click', function(){
     $('#ajoutCommentaire').fadeIn();
-    changerValue('auteurCom', 'reponseCom');  
+    changerValue('auteurCom', 'reponseCom');
 	window.setInterval(function(){
 		$("#ajoutCommentaire").scrollTop = $("#ajoutCommentaire").scrollHeight;
 		$("#ajoutCommentaire").animate({scrollTop: $("#ajoutCommentaire").scrollHeight},3000);
 	}, 2000);
 });
-
-function signalementRep()
-{
-    if(confirm('Confirmez-vous le signalement de ce commentaire ?'))
-    {
-        document.getElementById('#formSignalementRep').submit();
-    }
-}
 
 function signalementCom()
 {
@@ -34,7 +26,7 @@ function signalementCom()
 
 
 function changerValue(idTitre, idText){
-    var nom = document.getElementById(idTitre);    
+    var nom = document.getElementById(idTitre);
     nom.value = "Nom";
     nom.style.color = "grey";
     nom.style.fontStyle = "italic";

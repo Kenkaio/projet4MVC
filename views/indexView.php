@@ -1,40 +1,20 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Mes chapitres</title>
-        <link href="../public/css/chapitre.css" rel="stylesheet" />
-        <link href="../public/css/index.css" rel="stylesheet" />
-        <link href="../public/assets/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<?php ob_start(); ?>
 
-        <?php
-            include '../views/menu.php';
-        ?>
-    </head>
-
-    <body>
-        <div class="contenuArticles">
-            <?php
-            while ($data = $posts->fetch())
-            {
-                $content = $data['contenu'];
-                $array1 = array('&lt;', '&gt;', '&quot;', '&amp;', '&eacute;', '&#39;', '&egrave;', '&ccedil;', '&agrave;', '=&nbsp;');
-                $array2 = array('<', '>', '"', '&', 'é', '\'', 'è', 'ç', 'à', '=');
-                $finalContent = str_replace($array1, $array2, $content);
-                $date = date_create($data['date']);
-                $echoDate = date_format($date, 'd-m-Y H:i:s');
-            ?>
-            <div id='article'>
-                    <div id='titreDate'><span id='titreArticle'><?= $data['titre'] ?></span></div>
-                    <span id='date'>Edité le : <?= $echoDate ?> </span>
-                    <span class='contenu'><?= $finalContent ?></span>
-                </div>
-            <a href="post.php?id=<?= $data['id'] ?>"><button class='suite'>Lire la suite</button></a>
-            <?php
-            }
-            $posts->closeCursor();
-            ?>
+<div class="contenuArticles">
+    <?php for ($i=0; $i < count($posts); $i++):?>
+        <?php $content = $posts[$i]->contenu; ?>
+        <?php $finalContent = changeArray($content); ?>
+        <?php $date = date_create($posts[$i]->date); ?>
+        <?php $echoDate = date_format($date, 'd-m-Y H:i:s'); ?>
+        <div id='article'>
+            <div id='titreDate'><span id='titreArticle'><?= $posts[$i]->titre ?></span></div>
+            <span id='date'>Edité le : <?= $echoDate ?> </span>
+            <span class='contenu'><?= $finalContent ?></span>
         </div>
-    </body>
-</html>
+        <a href="index.php?action=posts&id=<?= $posts[$i]->id ?>"><button class='suite'>Lire la suite</button></a>
+    <?php endfor; ?>
+</div>
+
+<?php $contentIndex = ob_get_clean(); ?>
+
+<?php require 'models/template/index.php'; ?>

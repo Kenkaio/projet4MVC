@@ -2,13 +2,13 @@
 
 body{
 	margin: 0;
-	padding: 0;		
+	padding: 0;
 }
 
 header{
 	position: fixed;
 	margin: 0;
-	padding: 0;	
+	padding: 0;
 	top: 0;
 	z-index: 1;
 }
@@ -25,7 +25,7 @@ header{
 #titre a{
 	color: black;
 }
-.contenuHeader{	
+.contenuHeader{
 	margin: 0;
 	padding: 0;
 	position: relative;
@@ -107,6 +107,15 @@ strong{
 	margin-bottom: 15px;
 }
 
+#errorPost{
+	text-align: center;
+	margin-top: 150px;
+}
+
+#contact, #formAdmin{
+	margin-top: 50px;
+}
+
 @media (max-width: 992px){
 	.contenuHeader{
 		display: none;
@@ -129,3 +138,4 @@ strong{
 		margin-top: 50px;
 	}
 }
+

@@ -1,11 +1,12 @@
-<?php
-  require('../controllers/reload.php');
-  $message = file_get_contents('../public/assets/json/arrayS.json');
-  $message = json_decode($message, true);
+<?php ob_start(); ?>
+<?php for ($i=0; $i < count($signs); $i++):?>
 
-  for ($i=0; $i < count($message); $i++) {
-    ?>
-      <p> Auteur : <strong><?= $message[$i]['auteur'] ?></strong> a été signalé pour le contenu : <strong><?= $message[$i]['contenu'] ?></strong>
-        <a href="../controllers/reload.php?sign=<?= $message[$i]['id'] ?>"><img id='sign<?= $message[$i]['id'] ?>' src="../public/images/croix.png" alt="édititon"></a></p>
-    <?php
-  }
+  <p> Auteur : <strong><?= $signs[$i]->auteur ?></strong> a été signalé pour le contenu : <strong><?= $signs[$i]->contenu ?></strong>
+  <a href="index.php?action=delSign&id=<?= $signs[$i]->id ?>"><img id='sign<?= $signs[$i]->id ?>' src="public/images/croix.png" alt="édititon"></a></p>
+
+<?php endfor; ?>
+
+<?php $contentAdmin = ob_get_clean(); ?>
+
+
+<?php require 'models/template/admin.php'; ?>

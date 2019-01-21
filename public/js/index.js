@@ -1,6 +1,3 @@
-/* ----- Création et mise en page du formulaire contact ------ */
-$('#contact').hide();
-$('#formAdmin').hide();
 
 var nom = document.getElementById('nom');
 nom.value = "Nom";
@@ -87,7 +84,7 @@ $('#lienContact').on('click', function(){
     $('.descriptionAuteur').hide();
 });
 
-$('#menuAdmin').on('click', function(){    
+$('#menuAdmin').on('click', function(){
     $('#contact').hide();
     $('#biog').hide();
     $('.descriptionAuteur').hide();

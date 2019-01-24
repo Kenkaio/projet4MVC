@@ -10,13 +10,9 @@ try {
 	require 'models/class/autoloader.php';
 	Autoloader::register();
 
-	if ($_SERVER['SERVER_NAME'] == 'localhost') {
-		$_SESSION['server'] = "localhost/jeanForterocheMVC/";
-	}
-	else{
-		$_SESSION['server'] = "formation-developpeur-web-junior-mc.fr/projet4/";
-	}
-
+	($_SERVER['SERVER_NAME'] == 'localhost') ? $directory = "jeanForterocheMVC/" : $directory = "projet4/";
+	$_SESSION['server'] = $_SERVER['SERVER_NAME'].'/'.$directory;
+	
 	if(isset($_GET['action'])){
 		if($_GET['action'] == "posts"){
 			if(isset($_GET['id'])){
